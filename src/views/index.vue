@@ -9,7 +9,7 @@
 	        <ul class="ui-grid-trisect">
 	            <li v-for="r in module.list" v-link="{name:'show', params:{id: r.id}}">
 	                <div class="ui-grid-trisect-img">
-	                	<img :src="r.images.large" alt="" class="block">
+	                	<img :src="r.images.large" alt="">
                 		<p class="ui-nowrap">{{r.title}}</p>
 	                </div>
 	            </li>
@@ -65,16 +65,6 @@
 	.ui-panel {
 		padding-bottom: 5px;
 
-		h2 {
-			position: relative;
-		}
-
-		.ui-panel-subtitle {
-			position: absolute;
-			right: 25px;
-			top: 0px;
-		}
-		
 		.ui-grid-trisect {
 			li {
 				position: relative;

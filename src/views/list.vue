@@ -1,7 +1,7 @@
 <template>
 	<div class="page" v-if="!$loadingRouteData" transition="fade">
 		<header-bar left="back" :title="title"></header-bar>
-		<ul class="ui-list ui-list-link ui-border-tb">
+		<ul class="ui-list ui-list-link ui-border-tb list-one">
 	        <li class="ui-border-t" v-for="r in list" v-link="{name: 'show', params: {id: r.id}}" track-by="id">
 	            <div class="ui-list-img">
 	                <img :src="r.images.large" alt="">
@@ -86,12 +86,3 @@
 		}
 	}
 </script>
-
-<style lang="sass" scoped>
-	.ui-list {
-		.ui-list-img, .ui-list-img img {
-			width: 60px;
-			height: 84px;
-		}
-	}
-</style>
