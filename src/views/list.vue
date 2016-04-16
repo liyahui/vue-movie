@@ -1,6 +1,6 @@
 <template>
 	<div class="page" v-if="!$loadingRouteData" transition="fade">
-		<header-bar left="back" :title="title"></header-bar>
+		<header-bar left="back" :title="title" right="search"></header-bar>
 		<ul class="ui-list ui-list-link ui-border-tb list-one">
 	        <li class="ui-border-t" v-for="r in list" v-link="{name: 'show', params: {id: r.id}}" track-by="id">
 	            <div class="ui-list-img">

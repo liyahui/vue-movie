@@ -1,6 +1,6 @@
  <template>
 	<div class="page" v-if="!$loadingRouteData" transition="fade">
-		<header-bar left="back" :title="title"></header-bar>
+		<header-bar left="back" :title="title" right="search"></header-bar>
 		<div class="banner">
 			<div class="blur" :style="{backgroundImage: 'url('+ image +')'}"></div>
 			<div class="info">

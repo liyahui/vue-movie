@@ -54,6 +54,8 @@
 		}
 
 		.search {
+			right: 4px;
+
 			i {
 				font-size: 54px;
 			}

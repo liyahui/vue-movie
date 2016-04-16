@@ -1,6 +1,6 @@
 <template>
 	<div class="page index" v-if="!$loadingRouteData" transition="fade">
-		<header-bar left="menu" title="电影"></header-bar>
+		<header-bar left="menu" title="电影" right="search"></header-bar>
 		<section class="ui-panel" v-for="module in modules">
 	        <h2 class="ui-arrowlink" v-link="{name:'list', params: {type: module.name}}">
 	        	{{module.title}}
