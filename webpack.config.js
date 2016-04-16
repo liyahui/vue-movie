@@ -69,10 +69,13 @@ module.exports = {
 	devServer: {
 		historyApiFallback: true,
 		noInfo: true
-	}
+	},
+	devtool: '#eval-source-map'
 }
 
 if (isProduction) {
+	module.exports.devtool = '#source-map'
+
 	module.exports.output.publicPath = 'static/'
 
 	module.exports.plugins = (module.exports.plugins || []).concat([
