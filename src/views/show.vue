@@ -1,4 +1,4 @@
-<template>
+ <template>
 	<div class="page" v-if="!$loadingRouteData" transition="fade">
 		<header-bar left="back" :title="title"></header-bar>
 		<div class="banner">
@@ -9,14 +9,23 @@
 					<h1 class="ui-nowrap">{{title}}</h1>
 					<p class="ui-nowrap"><star :score="score" size="large"></star></p>
 					<p class="ui-nowrap">类型：{{genres.join(' ')}}</p>
-					<p class="ui-nowrap">导演：<span v-for="cast in casts">{{cast.name}} </span></p>
+					<p class="ui-nowrap">主演：<span v-for="cast in casts">{{cast.name}} </span></p>
 					<p class="ui-nowrap">地区：{{countries.join(' ')}}</p>
 				</div>
 			</div>	
 		</div>
 		<section class="ui-panel summary">
-            <h2 class="ui-arrowlink"><a>剧情简介</a><span class="ui-panel-subtitle"></span></h2>
+            <h2><a>剧情简介</a><span class="ui-panel-subtitle"></span></h2>
             <div class="ui-whitespace ui-txt-justify ui-txt-sub ui-txt-info">{{summary}}</div>
+        </section>
+        <section class="ui-panel directors">
+            <h2><a>导演</a><span class="ui-panel-subtitle"></span></h2>
+            <div class="ui-row ui-whitespace">
+                <div class="ui-col ui-col-50" v-for="director in directors">
+                	<img :src="director.avatars.large">
+                	<h5 class="ui-nowrap">{{director.name}} <a>查看</a></h5>
+                </div>
+            </div>
         </section>
    	</div> 
 	<loading :show="$loadingRouteData"></loading>
@@ -32,7 +41,8 @@
 				casts: [],
 				score: 0,
 				countries: [],
-				summary: ''
+				summary: '',
+				directors: []
 			}
 		},
 		route: {
@@ -47,6 +57,7 @@
 					this.score = response.data.rating.average
 					this.countries = response.data.countries
 					this.summary = response.data.summary
+					this.directors = response.data.directors
 					this.$loadingRouteData = false
 				})
 			}
@@ -59,13 +70,17 @@
 	}
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 	.banner {
 		position: relative;
 		overflow: hidden;
+		height: 180px;
 
 		.blur {
-			height: 180px;
+			height: 220px;
+			width: 120%;
+			margin-left: -10%;
+			margin-top: -20px;
 			filter: blur(5px);
 			background-position: top;
 			background-size: cover;
@@ -118,5 +133,22 @@
 
 	.summary {
 		padding-bottom: 10px;
+	}
+
+	.directors {
+		padding-bottom: 10px;
+
+		.ui-col {
+			padding-right: 5px;
+
+			&:nth-child(2n) {
+				padding-right: 0px;
+				padding-left: 5px;
+			}
+		}
+
+		img {
+			width: 100%;
+		}
 	}
 </style>
