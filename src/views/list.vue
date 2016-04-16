@@ -31,7 +31,8 @@
 				page: 1,
 				count: 10,
 				type: '',
-				more: true
+				more: true,
+				load: false
 			}
 		},
 		route: {
@@ -43,18 +44,21 @@
 				window.addEventListener('scroll', this.scroll)
 			},
 			deactivate (transition) {
+				// 移除前删除对滚动事件
 				window.removeEventListener('scroll', this.scroll)
 				transition.next()
 			}
 		},
 		methods: {
+			// 监听网页滚动到底部
 			scroll (e) {
-				if(document.body.scrollHeight - window.screen.height - document.body.scrollTop === 0) {
+				if(document.body.scrollHeight - window.screen.height - document.body.scrollTop <= 0 && !this.load) {
+					this.load = true
 					this.pageData()
 				}
 			},
+			// 获取一页数据
 			pageData () {
-				console.log(this.page)
 				this.$http.jsonp('http://api.douban.com/v2/movie/' + this.type, {
 					count: this.count,
 					start: (this.page - 1) * this.count
@@ -70,6 +74,8 @@
 					}else{
 						this.more = false
 					}
+
+					this.load = false
 				})
 			}
 		},
@@ -81,7 +87,7 @@
 	}
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 	.ui-list {
 		.ui-list-img, .ui-list-img img {
 			width: 60px;
