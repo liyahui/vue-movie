@@ -17,6 +17,12 @@ export default (router) => {
 			component: (resolve) => {
 				require(['./views/show.vue'], resolve)
 			}
+		},
+		'/director/:id': {
+			name: 'director',
+			component: (resolve) => {
+				require(['./views/director.vue'], resolve)
+			}
 		}		
 	})
 }
