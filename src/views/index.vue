@@ -20,11 +20,11 @@
 </template>
 
 <script>
-
 	export default {
 		data (){
 			return {
-				modules: {},	
+				modules: {},
+				words: []
 			}
 		},
 		route: {
@@ -32,6 +32,7 @@
 				const actions = ['in_theaters', 'coming_soon', 'top250']
 
 				var modules = []
+				var hotwords = []
 
 				var promiseActions = actions.map((item, index) => {
 					return () => {
@@ -42,6 +43,10 @@
 								total: response.data.total,
 								list: response.data.subjects
 							})
+
+							response.data.subjects.forEach((item) => {
+								hotwords.push({title: item.title, id: item.id})
+							})
 						})
 					}
 				})
@@ -50,6 +55,7 @@
 					return curr.then(next);
 				}, Promise.resolve()).then(() => {
 					transition.next({modules: modules})
+					sessionStorage.hotwords = JSON.stringify(hotwords)
 					this.$loadingRouteData = false
 				});
 			}

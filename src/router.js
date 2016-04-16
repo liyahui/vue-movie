@@ -23,6 +23,12 @@ export default (router) => {
 			component: (resolve) => {
 				require(['./views/director.vue'], resolve)
 			}
+		},
+		'/search': {
+			name: 'search',
+			component: (resolve) => {
+				require(['./views/search.vue'], resolve)
+			}
 		}		
 	})
 }

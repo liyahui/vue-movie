@@ -10,7 +10,7 @@
         	<i></i>
         </button>
 
-        <button class="btn search right" v-if="right == 'search'">
+        <button class="btn search right" v-if="right == 'search'" v-link="{name: 'search'}">
         	<i class="ui-icon-search"></i>
         </button>
 
