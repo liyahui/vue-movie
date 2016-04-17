@@ -12,7 +12,7 @@
                 <button class="ui-searchbar-cancel" @click="cancel">取消</button>
             </div>
 	    </header>
-	   	<div class="hotwords">
+	   	<div class="hotwords" v-show="!suggest.length">
 	   		<h4>大家都在搜</h4>
 	   		<div class="hot-search ui-txt-info">
 	   			<span class="ui-label" v-for="hotword in hotwords" v-link="{name: 'show', params: {id: hotword.id}}" track-by="id">{{hotword.title}}</span>
@@ -24,6 +24,7 @@
 		   	</ul>
 	   	</div>
     </div>
+    <loading :show="loading"></loading>
 </template>
 
 <script>
@@ -32,7 +33,8 @@
 			return {
 				keywords: '',
 				hotwords: [],
-				suggest: []
+				suggest: [],
+				loading: false
 			}
 		},
 		ready () {
@@ -46,8 +48,10 @@
 		watch: {
 			keywords (val, oldVal) {
 				if(val.trim()){
+					this.loading = true
 					this.$http.jsonp('http://api.douban.com/v2/movie/search?q=' + val).then((response) => {
 						this.suggest = response.data.subjects
+						this.loading = false
 					})
 				}else{
 					this.suggest = []
@@ -65,6 +69,9 @@
 				this.keywords = ''
 				this.$els.keywords.focus()
 			}
+		},
+		components: {
+			loading: require('../components/Loading.vue')
 		}
 	}
 </script>
