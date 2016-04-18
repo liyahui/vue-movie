@@ -1,4 +1,4 @@
- <template>
+<template>
 	<div class="page" v-if="!$loadingRouteData" transition="fade">
 		<header-bar left="back" :title="title" right="search"></header-bar>
 		<div class="banner">
