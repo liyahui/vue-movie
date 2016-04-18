@@ -1,25 +1,27 @@
 <template>
-	<div class="page" v-if="!$loadingRouteData" transition="fade">
+	<div class="page">
 		<header-bar left="back" :title="title" right="search"></header-bar>
-		<ul class="ui-list ui-list-link ui-border-tb list-one">
-	        <li class="ui-border-t" v-for="r in list" v-link="{name: 'show', params: {id: r.id}}" track-by="id">
-	            <div class="ui-list-img">
-	                <img :src="r.images.large" alt="">
-	            </div>
-	            <div class="ui-list-info">
-	                <h4 class="ui-nowrap">{{r.title}}</h4>
-	                <p class="ui-nowrap"><star :score="r.rating.average"></app></p>
-	                <p class="ui-nowrap">{{r.genres.join(' ')}}</p>
-	                <p class="ui-nowrap"><span v-for="cast in r.casts">{{cast.name}} </span></p>
-	            </div>
-	        </li>
-	    </ul>
-	    <div class="ui-loading-wrap">
-            <p class="ui-txt-info">{{ more ? '加载中' : '没有更多了～'}}</p>
-            <i class="ui-loading" v-show="more"></i>
-        </div>
+		<main v-show="!$loadingRouteData">
+			<ul class="ui-list ui-list-link ui-border-tb list-one">
+				<li class="ui-border-t" v-for="r in list" v-link="{name: 'show', params: {id: r.id}}" track-by="id">
+					<div class="ui-list-img">
+						<img :src="r.images.large" alt="">
+					</div>
+					<div class="ui-list-info">
+						<h4 class="ui-nowrap">{{r.title}}</h4>
+						<p class="ui-nowrap"><star :score="r.rating.average"></app></p>
+						<p class="ui-nowrap">{{r.genres.join(' ')}}</p>
+						<p class="ui-nowrap"><span v-for="cast in r.casts">{{cast.name}} </span></p>
+					</div>
+				</li>
+			</ul>
+			<div class="ui-loading-wrap">
+				<p class="ui-txt-info">{{ more ? '加载中' : '没有更多了～'}}</p>
+				<i class="ui-loading" v-show="more"></i>
+			</div>
+		</main>
+		<loading :show="$loadingRouteData"></loading>
    	</div> 
-	<loading :show="$loadingRouteData"></loading>
 </template>
 
 <script>

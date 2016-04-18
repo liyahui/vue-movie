@@ -1,34 +1,37 @@
  <template>
-	<div class="page" v-if="!$loadingRouteData" transition="fade">
+	<div class="page">
 		<header-bar left="back" :title="title" right="search"></header-bar>
-		<div class="banner">
-			<div class="blur" :style="{backgroundImage: 'url('+ image +')'}"></div>
-			<div class="info">
-				<div class="img"><img :src="image" alt=""></div>
-				<div class="txt">
-					<h1 class="ui-nowrap">{{title}}</h1>
-					<p class="ui-nowrap"><star :score="score" size="large"></star></p>
-					<p class="ui-nowrap">类型：{{genres.join(' ')}}</p>
-					<p class="ui-nowrap">主演：<span v-for="cast in casts">{{cast.name}} </span></p>
-					<p class="ui-nowrap">地区：{{countries.join(' ')}}</p>
+		<main v-show="!$loadingRouteData">
+			<div class="banner">
+				<div class="blur" :style="{backgroundImage: 'url('+ image +')'}"></div>
+				<div class="info">
+					<div class="img"><img :src="image" alt=""></div>
+					<div class="txt">
+						<h1 class="ui-nowrap">{{title}}</h1>
+						<p class="ui-nowrap"><star :score="score" size="large"></star></p>
+						<p class="ui-nowrap">类型：{{genres.join(' ')}}</p>
+						<p class="ui-nowrap">主演：<span v-for="cast in casts">{{cast.name}} </span></p>
+						<p class="ui-nowrap">地区：{{countries.join(' ')}}</p>
+					</div>
+				</div>	
+			</div>
+		
+			<section class="ui-panel summary">
+				<h2><a>剧情简介</a><span class="ui-panel-subtitle"></span></h2>
+				<div class="ui-whitespace ui-txt-justify ui-txt-sub ui-txt-info">{{summary}}</div>
+			</section>
+			<section class="ui-panel directors">
+				<h2 class="ui-arrowlink"><a>导演</a><span class="ui-panel-subtitle"></span></h2>
+				<div class="ui-row ui-whitespace">
+					<div class="ui-col ui-col-33" v-for="director in directors" v-link="{name: 'director', params: {id: director.id}}">
+						<img :src="director.avatars.large">
+						<h5 class="ui-nowrap ui-arrow">{{director.name}} <a>(查看)</a></h5>
+					</div>
 				</div>
-			</div>	
-		</div>
-		<section class="ui-panel summary">
-            <h2><a>剧情简介</a><span class="ui-panel-subtitle"></span></h2>
-            <div class="ui-whitespace ui-txt-justify ui-txt-sub ui-txt-info">{{summary}}</div>
-        </section>
-        <section class="ui-panel directors">
-            <h2 class="ui-arrowlink"><a>导演</a><span class="ui-panel-subtitle"></span></h2>
-            <div class="ui-row ui-whitespace">
-                <div class="ui-col ui-col-33" v-for="director in directors" v-link="{name: 'director', params: {id: director.id}}">
-                	<img :src="director.avatars.large">
-                	<h5 class="ui-nowrap ui-arrow">{{director.name}} <a>(查看)</a></h5>
-                </div>
-            </div>
-        </section>
+			</section>
+		</main>
+		<loading :show="$loadingRouteData"></loading>
    	</div> 
-	<loading :show="$loadingRouteData"></loading>
 </template>
 
 <script>

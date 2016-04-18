@@ -1,22 +1,24 @@
 <template>
-	<div class="page index" v-if="!$loadingRouteData" transition="fade">
+	<div class="page">
 		<header-bar left="menu" title="电影" right="search"></header-bar>
-		<section class="ui-panel" v-for="module in modules">
-	        <h2 class="ui-arrowlink" v-link="{name:'list', params: {type: module.name}}">
-	        	{{module.title}}
-	        	<span class="ui-panel-subtitle">{{module.total}}个</span>
-	    	</h2>
-	        <ul class="ui-grid-trisect">
-	            <li v-for="r in module.list" v-link="{name:'show', params:{id: r.id}}">
-	                <div class="ui-grid-trisect-img">
-	                	<img :src="r.images.large" alt="">
-                		<p class="ui-nowrap">{{r.title}}</p>
-	                </div>
-	            </li>
-	        </ul>
-	    </section>
+		<main v-show="!$loadingRouteData">
+			<section class="ui-panel" v-for="module in modules">
+				<h2 class="ui-arrowlink" v-link="{name:'list', params: {type: module.name}}">
+					{{module.title}}
+					<span class="ui-panel-subtitle">{{module.total}}个</span>
+				</h2>
+				<ul class="ui-grid-trisect">
+					<li v-for="r in module.list" v-link="{name:'show', params:{id: r.id}}">
+						<div class="ui-grid-trisect-img">
+							<img :src="r.images.large" alt="">
+							<p class="ui-nowrap">{{r.title}}</p>
+						</div>
+					</li>
+				</ul>
+			</section>
+		</main>
+		<loading :show="$loadingRouteData"></loading>
 	</div>
-	<loading :show="$loadingRouteData"></loading>
 </template>
 
 <script>
