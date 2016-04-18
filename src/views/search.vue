@@ -31,6 +31,7 @@
 	export default {
 		data () {
 			return {
+				title: '搜索',
 				keywords: '',
 				hotwords: [],
 				suggest: [],
@@ -42,6 +43,7 @@
 		},
 		route: {
 			data (transition) {
+				document.title = this.title
 				this.hotwords = JSON.parse(sessionStorage.hotwords)
 			}
 		},

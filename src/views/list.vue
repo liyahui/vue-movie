@@ -65,7 +65,7 @@
 				}).then((response) => {
 					if(this.page === 1){
 						this.$loadingRouteData = false
-						this.title = response.data.title.split('-')[0]
+						document.title = this.title = response.data.title.split('-')[0]
 					}
 
 					if(response.data && response.data.subjects.length){

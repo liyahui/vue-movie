@@ -50,7 +50,7 @@
 				var params = transition.to.params
 
 				this.$http.jsonp('http://api.douban.com/v2/movie/subject/' + params.id).then((response) => {
-					this.title = response.data.title
+					document.title = this.title = response.data.title
 					this.image = response.data.images.large
 					this.genres = response.data.genres
 					this.casts = response.data.casts

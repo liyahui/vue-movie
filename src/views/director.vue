@@ -46,7 +46,7 @@
 		route: {
 			data (transition) {
 				this.$http.jsonp('http://api.douban.com/v2/movie/celebrity/' + transition.to.params.id).then((response) => {
-					this.title = response.data.name
+					document.title = this.title = response.data.name
 					this.image = response.data.avatars.large
 					this.gender = response.data.gender
 					this.born_place = response.data.born_place

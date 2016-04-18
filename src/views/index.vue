@@ -1,6 +1,6 @@
 <template>
 	<div class="page index" v-if="!$loadingRouteData" transition="fade">
-		<header-bar left="menu" title="电影" right="search"></header-bar>
+		<header-bar left="menu" :title="title" right="search"></header-bar>
 		<section class="ui-panel" v-for="module in modules">
 	        <h2 class="ui-arrowlink" v-link="{name:'list', params: {type: module.name}}">
 	        	{{module.title}}
@@ -23,12 +23,15 @@
 	export default {
 		data (){
 			return {
+				title: '电影',
 				modules: {},
 				words: []
 			}
 		},
 		route: {
 			data (transition) {
+				document.title = this.title
+
 				const actions = ['in_theaters', 'coming_soon', 'top250']
 
 				var modules = []
