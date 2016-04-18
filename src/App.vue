@@ -1,5 +1,5 @@
 <template>
-	<router-view transition="fade"></router-view>
+	<router-view ></router-view>
 </template>
 
 <style lang="sass">
