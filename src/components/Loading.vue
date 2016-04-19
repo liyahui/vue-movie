@@ -1,5 +1,5 @@
 <template>
-	<div class="ui-loading-block show" v-if="show">
+	<div :class="['ui-loading-block','show', near]" v-if="show">
         <div class="ui-loading-cnt">
             <i class="ui-loading-bright"></i>
         </div>
@@ -8,12 +8,18 @@
 
 <script>
 	export default {
-		props: ['show']
+		props: ['show', 'near']
 	}
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 	.ui-loading-block {
+
+		&.top {
+			.ui-loading-cnt {
+				margin-top: -200px;
+			}
+		}
 
 		.ui-loading-cnt {
 			width: 57px;

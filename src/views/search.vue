@@ -24,7 +24,7 @@
 		   	</ul>
 	   	</div>
     </div>
-    <loading :show="loading"></loading>
+    <loading :show="loading" near="top"></loading>
 </template>
 
 <script>
