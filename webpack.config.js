@@ -5,6 +5,7 @@ var isProduction = process.env.NODE_ENV === 'production'
 
 if (isProduction) {
 	require('shelljs/global')
+	// 清空构建目录
 	rm('-rf', 'dist')
 }
 
@@ -48,14 +49,18 @@ module.exports = {
 		}]
 	},
 	plugins: [
+		// 自动生成HTML文件
 		new HtmlWebpackPlugin({
 			template: 'index.html',
 			filename: '../index.html',
 			minify: {
 				removeComments: true,
-				collapseWhitespace: true
+				collapseWhitespace: true,
+				removeAttributeQuotes: true
 			}
 		}),
+
+		// 提取css
 		new ExtractTextPlugin('[name].[contenthash:20].css', {
 			allChunks: true
 		})
