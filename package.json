@@ -1,8 +1,7 @@
 {
-  "name": "movie",
+  "name": "豆瓣电影",
   "version": "1.0.0",
-  "description": "douban movie",
-  "main": "index.html",
+  "description": "使用vue.js+webpack+豆瓣api写的一个电影webapp，由于部分接口需要权限，豆瓣已经关闭了apikey的申请，最初计划做的一些功能没有实现",
   "scripts": {
     "dev": "webpack-dev-server --inline",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
