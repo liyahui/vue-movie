@@ -15,12 +15,12 @@
 	   	<div class="hotwords" v-show="!suggest.length">
 	   		<h4>大家都在搜</h4>
 	   		<div class="hot-search ui-txt-info">
-	   			<span class="ui-label" v-for="hotword in hotwords" v-link="{name: 'show', params: {id: hotword.id}}" track-by="id">{{hotword.title}}</span>
+	   			<span class="ui-label" v-for="hotword in hotwords" v-link="{name: 'show', params: {id: hotword.id}}" track-by="$index" track-by="id">{{hotword.title}}</span>
 	   		</div>
 	   	</div>
 	   	<div class="suggest" v-show="suggest.length">
 		   	<ul class="ui-list ui-list-text ui-list-link ui-txt-info">
-		   		<li v-for="r in suggest" class="ui-border-b" transition="staggered" stagger="50" v-link="{name: 'show', params: {id: r.id}}">{{r.title}}</li>
+		   		<li v-for="r in suggest" class="ui-border-b" transition="staggered" stagger="50" track-by="$index" v-link="{name: 'show', params: {id: r.id}}">{{r.title}}</li>
 		   	</ul>
 	   	</div>
     </div>
